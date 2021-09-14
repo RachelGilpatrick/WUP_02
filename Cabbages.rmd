@@ -24,6 +24,7 @@ veggy <- cabbages
 $h_0$: there is no difference in the Vitamin C content of cabbages cultivated with methods 39 and 52.
 
 $h_A$: there is a difference in the Vitamin C content based on cultivation method
+
 # Methods
 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method.!-->
@@ -40,9 +41,6 @@ Vitc is a numerical variable. Cult is acategorical variable. so the helper file 
 
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
-
-### Numerical Descriptive Results
-
 ```{r}
 basicCN <- ggplot(veggy,aes(x=Cult,y=VitC))
 ```
@@ -51,8 +49,6 @@ basicCN <- ggplot(veggy,aes(x=Cult,y=VitC))
 ```{r}
 basicCN + geom_boxplot()
 ```
-
-
   
   
 ### get fancy  
@@ -61,11 +57,18 @@ basicCN + geom_boxplot()
 basicCN + geom_boxplot(notch=TRUE,outlier.color = "red") + stat_boxplot(geom ='errorbar') + labs(title="Fancy notch boxplot \n with 2 lines")
 ```
 
+Boxplot shows the VitC is more for c52 than c39. The VitC level for c52 is around 65 and c39 is around 52.
+
+
+### Numerical Descriptive Results
+
+
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 ```{r}
 favstats(VitC~Cult,data=veggy)
 ```
 
+The table shows that c39 is an average of 51.5 and the c52 is an average 64.4 of VitC.
 
 ## Inferential Results
 
@@ -73,8 +76,11 @@ favstats(VitC~Cult,data=veggy)
 ```{r}
 t.test(VitC~Cult,data=veggy)
 ```
+The p-value is 0.00000003405. It is a small number. What this number represents is the odds of getting a sample like the one we just examined if the null hypothesis is true. Now with a number so small I reject the null hypothesis.
+
 
 # Discussion and Conclusion
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
-I reject the null hypothesis because the p-value is way to small.
+
+My conclusion is that the relationship between cultivation and Vitamin C content is that C52 has more VitC content than c39.
